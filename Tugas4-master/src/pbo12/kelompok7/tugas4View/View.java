@@ -9,6 +9,8 @@ import pbo12.kelompok7.tugas4.KTP;
 import pbo12.kelompok7.tugas4.Nama;
 import pbo12.kelompok7.tugas4.Handuk;
 import pbo12.kelompok7.tugas4.PaketFitness;
+import pbo12.kelompok7.tugas4.cabang;
+import pbo12.kelompok7.tugas4.jenisKel;
 
 /**
  *
@@ -32,9 +34,10 @@ public class View extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnJk = new javax.swing.ButtonGroup();
         jLabel10 = new javax.swing.JLabel();
         btnSimpan = new javax.swing.JButton();
-        cabang = new javax.swing.JComboBox<>();
+        cmboxCabang = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         txtHasil = new javax.swing.JTextArea();
@@ -67,7 +70,7 @@ public class View extends javax.swing.JFrame {
             }
         });
 
-        cabang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ANTAPANI", "SUKAJADI", "UJUNG BERUNG", "CICADAS", "CICENDO", " " }));
+        cmboxCabang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ANTAPANI", "SUKAJADI", "UJUNG BERUNG", "CICADAS", "CICENDO", " " }));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("FORM REGISTRASI ANGGOTA GYM");
@@ -100,6 +103,7 @@ public class View extends javax.swing.JFrame {
 
         chkBesar.setText("Besar");
 
+        btnJk.add(male);
         male.setSelected(true);
         male.setText("Male");
         male.addActionListener(new java.awt.event.ActionListener() {
@@ -117,6 +121,7 @@ public class View extends javax.swing.JFrame {
 
         jLabel9.setText("Output :");
 
+        btnJk.add(female);
         female.setText("Female");
 
         jLabel6.setText("Cabang");
@@ -142,7 +147,7 @@ public class View extends javax.swing.JFrame {
                                 .addComponent(txtKtp, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(male)
                                 .addComponent(female)
-                                .addComponent(cabang, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cmboxCabang, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(18, 18, 18)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -188,7 +193,7 @@ public class View extends javax.swing.JFrame {
                                 .addGap(40, 40, 40)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel6)
-                                    .addComponent(cabang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(cmboxCabang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(male)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -259,14 +264,24 @@ public class View extends javax.swing.JFrame {
             default:
                 break;
         }
-       
         
+        cabang cb = new cabang();
+        String cabang = (String) cmboxCabang.getSelectedItem();
+        cb.setCabang(cabang);
+                
+        jenisKel jk = new jenisKel();
+        String jenis;
+        if (male.isSelected()) {
+            jk.setJenis("male");
+        } else {
+            jk.setJenis("Female");
+        }
         
-
+         
         txtHasil.setText("Nama   : "+oNama.getNama()
                 + "\nNo KTP   : "+oKtp.getKtp()
-                +"\nJenis Kelamin :"
-                +"\nCabang : "
+                +"\nJenis Kelamin :"+jk.getJenis()
+                +"\nCabang : "+cb.getCabang()
                 +"\n Jenis Handuk : "+hd.getHanduk()
                 +"\n Paket :  "+pf.getPaket()
                 +"\n Total Biaya : "+pf.getBiaya());
@@ -317,10 +332,11 @@ public class View extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup btnJk;
     private javax.swing.JButton btnSimpan;
-    private javax.swing.JComboBox<String> cabang;
     private javax.swing.JCheckBox chkBesar;
     private javax.swing.JCheckBox chkKecil;
+    private javax.swing.JComboBox<String> cmboxCabang;
     private javax.swing.JRadioButton female;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
